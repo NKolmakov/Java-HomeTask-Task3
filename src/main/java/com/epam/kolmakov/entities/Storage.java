@@ -15,7 +15,6 @@ public class Storage {
         containers = new ArrayList<>(capacity);
     }
 
-
     public int getCapacity() {
         return capacity;
     }
