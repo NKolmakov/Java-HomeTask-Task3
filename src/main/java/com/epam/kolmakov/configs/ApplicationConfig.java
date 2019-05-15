@@ -21,6 +21,7 @@ public class ApplicationConfig {
         int nextShipId = 1;
         int nextContainerId = 1;
         List<Ship> ships = new ArrayList<>();
+
         for (int i = 0; i < 5; i++) {
             Ship ship1 = new Ship(nextShipId++, ContainerTypes.platform, new Random().nextInt(20) + 10);
             ship1.addContainers2Unloading(getFilledContainers(ship1.getCapacity(), ContainerTypes.tank, nextContainerId));

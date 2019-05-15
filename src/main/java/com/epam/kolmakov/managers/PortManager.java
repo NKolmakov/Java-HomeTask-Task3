@@ -25,7 +25,7 @@ public class PortManager extends Thread {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
-            Main.LOGGER.error("Thread "+getName()+" was interrupted");
+            Main.LOGGER.error("Thread " + getName() + " was interrupted");
         }
 
         port.lock();

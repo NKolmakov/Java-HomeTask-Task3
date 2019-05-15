@@ -23,7 +23,6 @@ public class Storage {
      * <p>Use this method to add a container to storage</p>
      *
      * @param container container to add to storage
-     *
      * @return <i>true</i> if storage has free space else return <i>false</i>
      */
     public boolean loadContainer(Container container) {
@@ -86,7 +85,7 @@ public class Storage {
     }
 
     public boolean addContainers(List<Container> containers) {
-        if(containers.size()+this.containers.size() <= capacity) {
+        if (containers.size() + this.containers.size() <= capacity) {
             this.containers.addAll(containers);
             return true;
         }

@@ -37,6 +37,7 @@ public class Port {
 
     /**
      * <p>Method to get queue of available docks</p>
+     *
      * @return queue of available docks
      */
     public Queue<Dock> getAvailableDocks() {
@@ -44,7 +45,8 @@ public class Port {
     }
 
     /**
-     *<p>Removes one dock from available docks queue. Other ships can't see this dock if it was reserved</p>
+     * <p>Removes one dock from available docks queue. Other ships can't see this dock if it was reserved</p>
+     *
      * @param dock - is dock will be reserved
      */
     public void reserveDock(Dock dock) {
@@ -53,6 +55,7 @@ public class Port {
 
     /**
      * <p>Method adds a dock to queue of available docks. Use this method when ship leave port</p>
+     *
      * @param dock - is dock that became available again
      */
     public void removeReservation(Dock dock) {
@@ -61,6 +64,7 @@ public class Port {
 
     /**
      * <p>A queue of ships that didn't reserve docks and want to reach port</p>
+     *
      * @return queue of ships in status "Waiting dock"
      */
     public Queue<Ship> getWaitingDockQueue() {
@@ -69,15 +73,17 @@ public class Port {
 
     /**
      * <p>Method adds ship to queue of ships that want to wait available docks</p>
+     *
      * @param ship - ship that will be added
-     * @return  <i>true</i> if queue not full or <i>false</i> if queue is full
+     * @return <i>true</i> if queue not full or <i>false</i> if queue is full
      */
     public boolean addShip2WaitingDockQueue(Ship ship) {
         return waitingDockQueue.offer(ship);
     }
 
     /**
-     *<p>Method allows get ship from waitingDockQueue</p>
+     * <p>Method allows get ship from waitingDockQueue</p>
+     *
      * @return first <i>Ship</i> from queue if queue has ships or <i>null</i> if queue is empty
      */
     public Ship getShipFromQueue() {
@@ -108,12 +114,13 @@ public class Port {
      */
     public void add2WaitingUnloadQueue(Ship ship) {
         this.waitingUnloadQueue.add(ship);
-        time2Wait.schedule(() -> startExchangeWithStorage(ship), new Random().nextInt(5)+5, TimeUnit.SECONDS);
+        time2Wait.schedule(() -> startExchangeWithStorage(ship), new Random().nextInt(5) + 5, TimeUnit.SECONDS);
         Main.LOGGER.info("Ship #" + ship.getShipId() + " started wait exchanging");
     }
 
     /**
      * <p>Method to ScheduledExecutorService. If given time is over ship start exchanging with storage</p>
+     *
      * @param ship - ship from waitingUnloadQueue
      */
     private void startExchangeWithStorage(Ship ship) {
@@ -141,7 +148,7 @@ public class Port {
             Dock dock = ship.leaveDock();
             removeReservation(dock);
             unlock();
-        }else{
+        } else {
             unlock();
         }
     }
@@ -149,6 +156,7 @@ public class Port {
     /**
      * <p>Gets ship that waiting unload by type of containers.
      * It means that method search one ship with load type of containers with appropriate required type from queue of waiting ships</p>
+     *
      * @param requiredContainersType - type of loading containers
      * @return <i>Ship</i> if ship with required type exists in queue or <i>null</i> if no such ships
      */
